@@ -1,11 +1,12 @@
-import { GUI_TIEN, RUT_TIEN } from "./ActionTypes.ts"
+import { GUI_TIEN, RUT_TIEN,CHECK_LS  } from "./ActionTypes.ts"
 
 const initialState = {
-    money: 69420
+    money: 69420,
+    history: []
 }
-interface Action{type:string, amount:number}
+interface Action{type:string, amount:number,history:Array<any>}
 
-export const reducer = (state:{money:number} = initialState, actions:Action) =>{
+export const reducer = (state:{money:number,history:Array<any>} = initialState, actions:Action) =>{
     switch (actions.type) {
         case RUT_TIEN:
             return{
@@ -16,6 +17,11 @@ export const reducer = (state:{money:number} = initialState, actions:Action) =>{
             return{
                 ...state,
                 money: state.money + actions.amount
+            }
+        case CHECK_LS:
+            return{
+                ...state,
+                history: actions.history
             }
         default:
             return state
